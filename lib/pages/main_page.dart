@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uikit/pages/chat/chats_page.dart';
 import 'package:flutter_uikit/pages/friends_page.dart';
@@ -24,9 +25,17 @@ class _MainPageState extends State<MainPage> {
   }
 
 
-  _buildBottomNavBarItem(IconData icon, String title) {
+  _buildBottomNavBarItem(IconData icon, String title, {bool hasBadge = false}) {
     return BottomNavigationBarItem(
-      icon: Icon(icon),
+      icon: hasBadge ? Badge(
+        shape: BadgeShape.circle,
+        borderRadius: 100,
+        child: Icon(icon),
+        badgeContent: Text('20', style: TextStyle(
+          color: Colors.white,
+          fontSize: 10
+        ),),
+      ) : Icon(icon),
       title: Text('$title')
     );
   }
@@ -60,7 +69,7 @@ class _MainPageState extends State<MainPage> {
             _buildBottomNavBarItem(Icons.message, '信息'),
             _buildBottomNavBarItem(Icons.group, '群组'),
             _buildBottomNavBarItem(Icons.home, '首页'),
-            _buildBottomNavBarItem(Icons.notifications, '消息'),
+            _buildBottomNavBarItem(Icons.notifications, '消息', hasBadge: true),
             _buildBottomNavBarItem(Icons.person, '我的')
           ],
           onTap: navigationTapped,
