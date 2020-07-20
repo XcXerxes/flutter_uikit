@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uikit/pages/auth/login_page.dart';
 import 'package:flutter_uikit/util/const.dart';
 import 'package:flutter_uikit/widget/custom_button.dart';
 import 'package:flutter_uikit/widget/custom_text_field.dart';
@@ -23,6 +24,10 @@ class _CheckEmailPageState extends State<CheckEmailPage> {
     showSnackBar('Please fix the errors in red before submitting.');
     if(!form.validate()) {
       validate = true;
+    } else {
+      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+        return LoginPage(email: email);
+      }));
     }
   }
 
